@@ -15,45 +15,153 @@
 
 body{
     min-height:100vh;
+    padding:14px;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:
-        radial-gradient(circle at top left,rgba(255,215,0,.25),transparent 35%),
-        radial-gradient(circle at bottom right,rgba(255,140,0,.20),transparent 35%),
-        linear-gradient(135deg,#020202,#111,#000);
+    background:linear-gradient(135deg,#020202,#101010,#000);
     color:white;
+    overflow:auto;
+}
+
+/* BACKGROUND GLOW */
+.bg-glow{
+    position:fixed;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.35;
+    z-index:0;
+}
+
+.bg-glow.one{
+    top:-120px;
+    left:-120px;
+    background:#ffd700;
+    animation:glowMove1 7s infinite alternate;
+}
+
+.bg-glow.two{
+    right:-120px;
+    bottom:-120px;
+    background:#ff8c00;
+    animation:glowMove2 8s infinite alternate;
+}
+
+@keyframes glowMove1{
+    from{transform:translate(0,0);}
+    to{transform:translate(90px,80px);}
+}
+
+@keyframes glowMove2{
+    from{transform:translate(0,0);}
+    to{transform:translate(-90px,-80px);}
+}
+
+/* PARTICLES */
+.particles span{
+    position:fixed;
+    bottom:-20px;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#ffd700;
+    box-shadow:0 0 14px #ffd700;
+    animation:particleUp 8s linear infinite;
+    opacity:.65;
+    z-index:1;
+}
+
+.particles span:nth-child(1){left:8%;animation-delay:0s;}
+.particles span:nth-child(2){left:18%;animation-delay:1s;}
+.particles span:nth-child(3){left:28%;animation-delay:2s;}
+.particles span:nth-child(4){left:38%;animation-delay:.5s;}
+.particles span:nth-child(5){left:48%;animation-delay:3s;}
+.particles span:nth-child(6){left:58%;animation-delay:1.6s;}
+.particles span:nth-child(7){left:68%;animation-delay:2.7s;}
+.particles span:nth-child(8){left:78%;animation-delay:3.5s;}
+.particles span:nth-child(9){left:88%;animation-delay:4.3s;}
+.particles span:nth-child(10){left:95%;animation-delay:5s;}
+
+@keyframes particleUp{
+    0%{
+        transform:translateY(0) scale(.5);
+        opacity:0;
+    }
+    20%{
+        opacity:.8;
+    }
+    100%{
+        transform:translateY(-110vh) scale(1.4);
+        opacity:0;
+    }
+}
+
+/* CARD */
+.card{
+    position:relative;
+    z-index:3;
+    width:100%;
+    max-width:410px;
+    padding:26px 22px;
+    border-radius:26px;
+    background:rgba(0,0,0,.86);
+    text-align:center;
+    box-shadow:
+        0 0 40px rgba(255,215,0,.22),
+        inset 0 0 25px rgba(255,215,0,.05);
+    animation:cardIn .7s ease;
     overflow:hidden;
 }
 
-.card{
-    width:92%;
-    max-width:420px;
-    padding:32px 26px;
+.card::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    background:linear-gradient(120deg,#ffd700,transparent,#ff8c00,transparent,#ffd700);
+    z-index:-1;
     border-radius:28px;
-    background:rgba(0,0,0,.88);
-    border:1px solid rgba(255,215,0,.28);
-    box-shadow:0 0 45px rgba(255,215,0,.22);
-    text-align:center;
-    animation:cardIn .7s ease;
+    animation:borderSpin 4s linear infinite;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    inset:1px;
+    background:rgba(0,0,0,.92);
+    border-radius:25px;
+    z-index:-1;
+}
+
+@keyframes borderSpin{
+    0%{filter:hue-rotate(0deg);}
+    100%{filter:hue-rotate(360deg);}
 }
 
 @keyframes cardIn{
-    from{opacity:0;transform:scale(.9) translateY(20px);}
-    to{opacity:1;transform:scale(1) translateY(0);}
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
 }
 
+/* LOGO */
 .logo{
-    margin-bottom:14px;
+    margin-bottom:12px;
 }
 
 .logo img{
-    width:280px;
+    width:270px;
     max-width:100%;
     height:auto;
     filter:
-        drop-shadow(0 0 15px rgba(255,215,0,.6))
-        drop-shadow(0 0 35px rgba(255,215,0,.4));
+        drop-shadow(0 0 16px rgba(255,215,0,.7))
+        drop-shadow(0 0 35px rgba(255,215,0,.35));
     animation:logoFloat 3s ease-in-out infinite;
 }
 
@@ -62,43 +170,46 @@ body{
     50%{transform:translateY(-6px);}
 }
 
-.badge{
-    display:inline-block;
-    padding:8px 18px;
-    border-radius:30px;
-    background:rgba(255,215,0,.13);
-    color:#ffd700;
-    font-size:12px;
-    letter-spacing:1.4px;
-    margin-bottom:16px;
-}
-
 h1{
     color:#ffd700;
-    font-size:31px;
-    margin-bottom:10px;
+    font-size:30px;
+    margin-bottom:8px;
     text-shadow:0 0 18px rgba(255,215,0,.8);
 }
 
 .desc{
     color:#ccc;
     font-size:14px;
-    line-height:1.6;
-    margin-bottom:24px;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+/* FORM */
+.input-wrap{
+    position:relative;
 }
 
 input{
     width:100%;
-    height:54px;
-    margin-bottom:14px;
-    border-radius:16px;
-    border:1px solid rgba(255,215,0,.25);
+    height:52px;
+    margin-bottom:12px;
+    border-radius:15px;
+    border:1px solid rgba(255,215,0,.28);
     outline:none;
-    background:#101010;
+    background:
+        linear-gradient(120deg,transparent,rgba(255,215,0,.08),transparent),
+        #101010;
+    background-size:200% 100%;
     color:#ffd700;
     text-align:center;
     font-size:15px;
-    font-weight:700;
+    font-weight:800;
+    animation:inputShine 3s linear infinite;
+}
+
+@keyframes inputShine{
+    from{background-position:200% 0;}
+    to{background-position:-200% 0;}
 }
 
 input::placeholder{
@@ -112,26 +223,27 @@ input:focus{
 
 button{
     width:100%;
-    height:54px;
+    height:52px;
     border:none;
-    border-radius:16px;
+    border-radius:15px;
     background:linear-gradient(135deg,#ffe45c,#ffb000,#ff8c00);
     color:#000;
     font-size:16px;
     font-weight:900;
     cursor:pointer;
     transition:.3s;
+    box-shadow:0 0 18px rgba(255,215,0,.25);
 }
 
 button:hover{
-    transform:translateY(-2px);
+    transform:translateY(-2px) scale(1.01);
     box-shadow:0 0 28px rgba(255,215,0,.55);
 }
 
 .message{
-    margin-top:16px;
+    margin-top:14px;
     font-size:14px;
-    font-weight:700;
+    font-weight:800;
 }
 
 .error{
@@ -139,24 +251,26 @@ button:hover{
 }
 
 .small{
-    margin-top:18px;
+    margin-top:12px;
     font-size:11px;
     color:#888;
 }
 
+/* LOADING */
 .loading-wrap{
-    padding:24px 5px;
+    padding:16px 4px;
+    animation:fadeIn .4s ease;
 }
 
 .spinner{
-    width:82px;
-    height:82px;
-    margin:0 auto 22px;
+    width:68px;
+    height:68px;
+    margin:0 auto 16px;
     border-radius:50%;
-    border:7px solid rgba(255,215,0,.12);
-    border-top:7px solid #ffd700;
+    border:6px solid rgba(255,215,0,.14);
+    border-top:6px solid #ffd700;
     animation:spin 1s linear infinite;
-    box-shadow:0 0 25px rgba(255,215,0,.35);
+    box-shadow:0 0 25px rgba(255,215,0,.4);
 }
 
 @keyframes spin{
@@ -165,23 +279,23 @@ button:hover{
 
 .loading-title{
     color:#ffd700;
-    font-size:24px;
+    font-size:22px;
     font-weight:900;
-    margin-bottom:10px;
+    margin-bottom:6px;
 }
 
 .loading-text{
     color:#ddd;
-    font-size:14px;
-    line-height:1.5;
+    font-size:13px;
+    line-height:1.4;
 }
 
 .progress{
     width:100%;
-    height:9px;
+    height:8px;
     background:#151515;
     border-radius:30px;
-    margin-top:24px;
+    margin-top:18px;
     overflow:hidden;
     border:1px solid rgba(255,215,0,.15);
 }
@@ -190,7 +304,7 @@ button:hover{
     height:100%;
     width:0%;
     background:linear-gradient(90deg,#ffd700,#ffae00);
-    animation:progressMove 2.8s forwards;
+    animation:progressMove 2.4s forwards;
 }
 
 @keyframes progressMove{
@@ -198,53 +312,171 @@ button:hover{
     to{width:100%;}
 }
 
+/* SUCCESS */
 .success-icon{
-    width:88px;
-    height:88px;
-    margin:0 auto 20px;
+    width:62px;
+    height:62px;
+    margin:0 auto 12px;
     border-radius:50%;
     background:rgba(0,255,136,.12);
     border:2px solid #00ff88;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:44px;
+    font-size:34px;
     color:#00ff88;
-    animation:pop .6s ease;
+    animation:pop .5s ease;
 }
 
 @keyframes pop{
     0%{transform:scale(.3);opacity:0;}
-    70%{transform:scale(1.15);}
+    70%{transform:scale(1.12);}
     100%{transform:scale(1);opacity:1;}
 }
 
-.step-box{
-    margin-top:20px;
-    padding:18px;
+.reward-box{
+    position:relative;
+    overflow:hidden;
+    margin:14px 0;
+    padding:15px;
     border-radius:18px;
+    background:linear-gradient(135deg,#ffd700,#ffb000,#ff8c00);
+    color:#000;
+    font-weight:900;
+    box-shadow:0 0 25px rgba(255,215,0,.35);
+    animation:rewardPulse 1.4s infinite alternate;
+}
+
+.reward-box::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-80%;
+    width:60%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);
+    animation:rewardShine 2s infinite;
+}
+
+@keyframes rewardShine{
+    from{left:-80%;}
+    to{left:130%;}
+}
+
+@keyframes rewardPulse{
+    from{transform:scale(1);}
+    to{transform:scale(1.02);}
+}
+
+.reward-title{
+    font-size:12px;
+    letter-spacing:.8px;
+}
+
+.reward-value{
+    font-size:28px;
+    margin-top:5px;
+}
+
+.step-box{
+    margin-top:14px;
+    padding:14px;
+    border-radius:16px;
     background:rgba(255,215,0,.08);
-    border:1px solid rgba(255,215,0,.2);
+    border:1px solid rgba(255,215,0,.22);
     text-align:left;
 }
 
 .step-box h3{
     color:#ffd700;
     text-align:center;
-    margin-bottom:12px;
-    font-size:16px;
+    margin-bottom:8px;
+    font-size:14px;
 }
 
 .step-box ol{
-    padding-left:20px;
+    padding-left:18px;
     color:#e0e0e0;
-    font-size:14px;
-    line-height:1.8;
+    font-size:12.5px;
+    line-height:1.55;
+}
+
+.confetti{
+    position:fixed;
+    top:-15px;
+    width:8px;
+    height:14px;
+    border-radius:2px;
+    animation:confettiFall 1.8s linear forwards;
+    z-index:999;
+}
+
+@keyframes confettiFall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* MOBILE */
+@media(max-width:480px){
+    .card{
+        max-width:360px;
+        padding:22px 18px;
+        border-radius:22px;
+    }
+
+    .logo img{
+        width:230px;
+    }
+
+    h1{
+        font-size:25px;
+    }
+
+    .desc{
+        font-size:13px;
+        margin-bottom:16px;
+    }
+
+    input,
+    button{
+        height:48px;
+        border-radius:13px;
+        font-size:14px;
+    }
+
+    .reward-value{
+        font-size:25px;
+    }
+
+    .step-box ol{
+        font-size:12px;
+    }
 }
 </style>
 </head>
 
 <body>
+
+<div class="bg-glow one"></div>
+<div class="bg-glow two"></div>
+
+<div class="particles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+</div>
 
 <div class="card" id="card">
 
@@ -255,31 +487,66 @@ button:hover{
     <h1>REDEEM CODE</h1>
 
     <p class="desc">
-        Masukkan username dan kode redeem untuk membuka akses bonus
+        Masukkan username dan kode redeem untuk membuka akses bonus.
     </p>
 
-    <input type="text" id="username" placeholder="MASUKKAN USERNAME">
-    <input type="text" id="code" placeholder="MASUKKAN KODE REDEEM">
+    <div class="input-wrap">
+        <input type="text" id="username" placeholder="MASUKKAN USERNAME">
+        <input type="text" id="code" placeholder="MASUKKAN KODE REDEEM">
+    </div>
 
     <button onclick="redeemCode()">KLAIM BONUS</button>
 
     <div class="message" id="message"></div>
 
     <div class="small">
-        Pastikan username dan kode sudah benar
+        Pastikan username dan kode sudah benar.
     </div>
 
 </div>
 
 <script>
+const logoUrl = "https://sga-cdn-hxg6b2d7ctb2c0eu.z02.azurefd.net/agent-websites/326/medialibrary/images/326_d403d3a3233245cb950597bd295b1f98.webp";
+const validCode = "BONUS1000";
+const redirectUrl = "https://dub.sh/kilat404-qris";
+
+function formatRupiah(number){
+    return number.toLocaleString("id-ID");
+}
+
+function getRandomBonus(){
+    const bonusList = [
+        500000, 550000, 600000, 650000, 700000, 750000,
+        800000, 850000, 900000, 950000, 1000000
+    ];
+
+    return bonusList[Math.floor(Math.random() * bonusList.length)];
+}
+
+function createConfetti(){
+    const colors = ["#ffd700","#ff8c00","#00ff88","#ffffff"];
+
+    for(let i = 0; i < 38; i++){
+        const confetti = document.createElement("div");
+        confetti.className = "confetti";
+        confetti.style.left = Math.random() * 100 + "vw";
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * .45 + "s";
+        confetti.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        }, 2200);
+    }
+}
+
 function redeemCode(){
 
     const username = document.getElementById("username").value.trim();
     const code = document.getElementById("code").value.trim();
     const message = document.getElementById("message");
     const card = document.getElementById("card");
-
-    const validCode = "BONUS1000";
 
     if(username === "" || code === ""){
         message.className = "message error";
@@ -293,20 +560,21 @@ function redeemCode(){
         return;
     }
 
+    const bonus = getRandomBonus();
+    const bonusText = formatRupiah(bonus);
+
     card.innerHTML = `
         <div class="logo">
-            <img src="https://sga-cdn-hxg6b2d7ctb2c0eu.z02.azurefd.net/agent-websites/326/medialibrary/images/326_d403d3a3233245cb950597bd295b1f98.webp" alt="Logo">
+            <img src="${logoUrl}" alt="Logo">
         </div>
 
         <div class="loading-wrap">
             <div class="spinner"></div>
 
-            <div class="loading-title">
-                MEMPROSES...
-            </div>
+            <div class="loading-title">MEMPROSES...</div>
 
             <div class="loading-text">
-                Sistem sedang memverifikasi username dan kode redeem kamu.
+                Memverifikasi username, kode redeem, dan nominal bonus.
             </div>
 
             <div class="progress">
@@ -320,46 +588,53 @@ function redeemCode(){
     `;
 
     setTimeout(() => {
+        createConfetti();
+
         card.innerHTML = `
             <div class="logo">
-                <img src="https://sga-cdn-hxg6b2d7ctb2c0eu.z02.azurefd.net/agent-websites/326/medialibrary/images/326_d403d3a3233245cb950597bd295b1f98.webp" alt="Logo">
+                <img src="${logoUrl}" alt="Logo">
             </div>
 
             <div class="success-icon">✓</div>
 
-            <div class="badge">KLAIM BONUS</div>
-
             <h1>BERHASIL!</h1>
 
             <p class="desc">
-                Halo <b>${username}</b>, kode redeem kamu berhasil diproses.
+                Halo <b>${username}</b>, kode berhasil diproses.
             </p>
+
+            <div class="reward-box">
+                <div class="reward-title">
+                    BONUS YANG DIDAPAT
+                </div>
+
+                <div class="reward-value">
+                    Rp ${bonusText}
+                </div>
+            </div>
 
             <div class="step-box">
                 <h3>CARA MENCAIRKAN BONUS</h3>
                 <ol>
-                    <li>Login menggunakan username yang sama.</li>
-                    <li>Lakukan deposit minimal 35rb menggunakan QRIS</li>
-                    <li>Bonus akan diproses otomatis setelah transaksi berhasil.</li>
-                    <li>Pastikan data akun sudah benar sebelum melanjutkan.</li>
+                    <li>Login memakai username yang sama.</li>
+                    <li>Deposit minimal 35rb via QRIS.</li>
+                    <li>Bonus diproses otomatis setelah transaksi berhasil.</li>
                 </ol>
             </div>
 
             <br>
 
-            <button onclick="lanjutDeposit()">
-                LANJUTKAN
-            </button>
+            <button onclick="lanjutDeposit()">LANJUTKAN</button>
 
             <div class="small">
-                Bonus mengikuti syarat dan ketentuan yang berlaku.
+                Bonus mengikuti syarat dan ketentuan.
             </div>
         `;
-    }, 3000);
+    }, 2500);
 }
 
 function lanjutDeposit(){
-    window.location.href = "https://dub.sh/kilat404-qris";
+    window.location.href = redirectUrl;
 }
 </script>
 
