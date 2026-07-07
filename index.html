@@ -3,638 +3,391 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redeem Bonus</title>
+<title>Tebak Skor Piala Dunia 2026</title>
 
 <style>
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI', Arial, sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
 }
 
 body{
-    min-height:100vh;
-    padding:14px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,#020202,#101010,#000);
-    color:white;
-    overflow:auto;
+  min-height:100vh;
+  background:linear-gradient(135deg,#fff6d7,#ffffff,#ffe6a1);
+  display:flex;
+  justify-content:center;
+  padding:15px;
 }
 
-/* BACKGROUND GLOW */
-.bg-glow{
-    position:fixed;
-    width:420px;
-    height:420px;
-    border-radius:50%;
-    filter:blur(100px);
-    opacity:.35;
-    z-index:0;
+.poster{
+  width:390px;
+  background:#fff;
+  border:3px solid #e6a800;
+  border-radius:22px;
+  padding:18px;
+  color:#10265a;
+  box-shadow:0 10px 35px rgba(0,0,0,.18);
 }
 
-.bg-glow.one{
-    top:-120px;
-    left:-120px;
-    background:#ffd700;
-    animation:glowMove1 7s infinite alternate;
-}
-
-.bg-glow.two{
-    right:-120px;
-    bottom:-120px;
-    background:#ff8c00;
-    animation:glowMove2 8s infinite alternate;
-}
-
-@keyframes glowMove1{
-    from{transform:translate(0,0);}
-    to{transform:translate(90px,80px);}
-}
-
-@keyframes glowMove2{
-    from{transform:translate(0,0);}
-    to{transform:translate(-90px,-80px);}
-}
-
-/* PARTICLES */
-.particles span{
-    position:fixed;
-    bottom:-20px;
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:#ffd700;
-    box-shadow:0 0 14px #ffd700;
-    animation:particleUp 8s linear infinite;
-    opacity:.65;
-    z-index:1;
-}
-
-.particles span:nth-child(1){left:8%;animation-delay:0s;}
-.particles span:nth-child(2){left:18%;animation-delay:1s;}
-.particles span:nth-child(3){left:28%;animation-delay:2s;}
-.particles span:nth-child(4){left:38%;animation-delay:.5s;}
-.particles span:nth-child(5){left:48%;animation-delay:3s;}
-.particles span:nth-child(6){left:58%;animation-delay:1.6s;}
-.particles span:nth-child(7){left:68%;animation-delay:2.7s;}
-.particles span:nth-child(8){left:78%;animation-delay:3.5s;}
-.particles span:nth-child(9){left:88%;animation-delay:4.3s;}
-.particles span:nth-child(10){left:95%;animation-delay:5s;}
-
-@keyframes particleUp{
-    0%{
-        transform:translateY(0) scale(.5);
-        opacity:0;
-    }
-    20%{
-        opacity:.8;
-    }
-    100%{
-        transform:translateY(-110vh) scale(1.4);
-        opacity:0;
-    }
-}
-
-/* CARD */
-.card{
-    position:relative;
-    z-index:3;
-    width:100%;
-    max-width:410px;
-    padding:26px 22px;
-    border-radius:26px;
-    background:rgba(0,0,0,.86);
-    text-align:center;
-    box-shadow:
-        0 0 40px rgba(255,215,0,.22),
-        inset 0 0 25px rgba(255,215,0,.05);
-    animation:cardIn .7s ease;
-    overflow:hidden;
-}
-
-.card::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    background:linear-gradient(120deg,#ffd700,transparent,#ff8c00,transparent,#ffd700);
-    z-index:-1;
-    border-radius:28px;
-    animation:borderSpin 4s linear infinite;
-}
-
-.card::after{
-    content:"";
-    position:absolute;
-    inset:1px;
-    background:rgba(0,0,0,.92);
-    border-radius:25px;
-    z-index:-1;
-}
-
-@keyframes borderSpin{
-    0%{filter:hue-rotate(0deg);}
-    100%{filter:hue-rotate(360deg);}
-}
-
-@keyframes cardIn{
-    from{
-        opacity:0;
-        transform:scale(.9) translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:scale(1) translateY(0);
-    }
-}
-
-/* LOGO */
 .logo{
-    margin-bottom:12px;
+  width:220px;
+  display:block;
+  margin:0 auto 15px;
 }
 
-.logo img{
-    width:270px;
-    max-width:100%;
-    height:auto;
-    filter:
-        drop-shadow(0 0 16px rgba(255,215,0,.7))
-        drop-shadow(0 0 35px rgba(255,215,0,.35));
-    animation:logoFloat 3s ease-in-out infinite;
+.user-box{
+  background:#fff9e8;
+  border:2px solid #e6a800;
+  border-radius:16px;
+  padding:13px;
+  margin-bottom:18px;
 }
 
-@keyframes logoFloat{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-6px);}
+.user-box label{
+  font-size:12px;
+  font-weight:900;
+  display:block;
+  margin-bottom:7px;
 }
 
-h1{
-    color:#ffd700;
-    font-size:30px;
-    margin-bottom:8px;
-    text-shadow:0 0 18px rgba(255,215,0,.8);
+.user-box input{
+  width:100%;
+  height:48px;
+  border:2px solid #f0b400;
+  border-radius:12px;
+  padding:0 14px;
+  font-size:15px;
+  font-weight:800;
+  color:#10265a;
+  outline:none;
 }
 
-.desc{
-    color:#ccc;
-    font-size:14px;
-    line-height:1.5;
-    margin-bottom:20px;
+.title{
+  text-align:center;
+  font-size:32px;
+  font-weight:900;
 }
 
-/* FORM */
-.input-wrap{
-    position:relative;
+.subtitle{
+  text-align:center;
+  font-size:19px;
+  font-weight:900;
+  color:#d99400;
+  margin-bottom:22px;
 }
 
-input{
-    width:100%;
-    height:52px;
-    margin-bottom:12px;
-    border-radius:15px;
-    border:1px solid rgba(255,215,0,.28);
-    outline:none;
-    background:
-        linear-gradient(120deg,transparent,rgba(255,215,0,.08),transparent),
-        #101010;
-    background-size:200% 100%;
-    color:#ffd700;
-    text-align:center;
-    font-size:15px;
-    font-weight:800;
-    animation:inputShine 3s linear infinite;
+.match{
+  background:#fffdf7;
+  border:2px solid #ffd979;
+  border-radius:18px;
+  margin-bottom:18px;
+  padding:18px 12px 15px;
+  position:relative;
+  box-shadow:0 6px 12px rgba(0,0,0,.08);
 }
 
-@keyframes inputShine{
-    from{background-position:200% 0;}
-    to{background-position:-200% 0;}
+.match-label{
+  position:absolute;
+  top:-15px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(#ffd84d,#e39a00);
+  color:#fff;
+  padding:7px 30px;
+  border-radius:0 0 15px 15px;
+  font-weight:900;
+  font-size:15px;
 }
 
-input::placeholder{
-    color:#777;
+.teams{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:15px;
 }
 
-input:focus{
-    border-color:#ffd700;
-    box-shadow:0 0 18px rgba(255,215,0,.4);
+.team{
+  width:38%;
+  text-align:center;
+}
+
+.team img{
+  width:72px;
+  height:50px;
+  object-fit:cover;
+  border-radius:8px;
+  border:2px solid #f2b300;
+  margin-bottom:8px;
+}
+
+.team h3{
+  font-size:15px;
+  font-weight:900;
+}
+
+.vs{
+  font-size:28px;
+  font-weight:900;
+  color:#d60000;
+}
+
+.score{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-top:14px;
+}
+
+.score input{
+  width:58px;
+  height:48px;
+  border:2px solid #f2a900;
+  border-radius:12px;
+  text-align:center;
+  font-size:22px;
+  font-weight:900;
+  color:#10265a;
+  outline:none;
+}
+
+.score span{
+  font-size:25px;
+  font-weight:900;
+  color:#9b6500;
+}
+
+.prize{
+  display:flex;
+  background:#fff;
+  border:2px solid #e8a500;
+  border-radius:18px;
+  padding:15px 6px;
+  text-align:center;
+}
+
+.prize-box{
+  width:33.33%;
+  border-right:1px solid #efc76c;
+}
+
+.prize-box:last-child{
+  border-right:none;
+}
+
+.medal{
+  width:38px;
+  height:38px;
+  background:linear-gradient(#ffe16a,#d99700);
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 8px;
+  font-weight:900;
+  font-size:20px;
+}
+
+.money{
+  color:#d10e0e;
+  font-size:17px;
+  font-weight:900;
+}
+
+.info{
+  display:flex;
+  gap:8px;
+  margin:18px 0;
+}
+
+.info-box{
+  flex:1;
+  text-align:center;
+  font-size:10px;
+  font-weight:900;
+  line-height:1.35;
+}
+
+.icon{
+  width:39px;
+  height:39px;
+  background:#10265a;
+  color:white;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 7px;
+  font-size:19px;
 }
 
 button{
-    width:100%;
-    height:52px;
-    border:none;
-    border-radius:15px;
-    background:linear-gradient(135deg,#ffe45c,#ffb000,#ff8c00);
-    color:#000;
-    font-size:16px;
-    font-weight:900;
-    cursor:pointer;
-    transition:.3s;
-    box-shadow:0 0 18px rgba(255,215,0,.25);
+  width:100%;
+  border:none;
+  background:linear-gradient(#ffd94f,#f4a900);
+  color:#10265a;
+  font-size:19px;
+  font-weight:900;
+  padding:15px;
+  border-radius:14px;
+  box-shadow:0 6px 0 #b97800;
+  cursor:pointer;
 }
 
-button:hover{
-    transform:translateY(-2px) scale(1.01);
-    box-shadow:0 0 28px rgba(255,215,0,.55);
+.loading{
+  position:fixed;
+  inset:0;
+  background:rgba(255,255,255,.96);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+  text-align:center;
 }
 
-.message{
-    margin-top:14px;
-    font-size:14px;
-    font-weight:800;
-}
-
-.error{
-    color:#ff4b4b;
-}
-
-.small{
-    margin-top:12px;
-    font-size:11px;
-    color:#888;
-}
-
-/* LOADING */
-.loading-wrap{
-    padding:16px 4px;
-    animation:fadeIn .4s ease;
-}
-
-.spinner{
-    width:68px;
-    height:68px;
-    margin:0 auto 16px;
-    border-radius:50%;
-    border:6px solid rgba(255,215,0,.14);
-    border-top:6px solid #ffd700;
-    animation:spin 1s linear infinite;
-    box-shadow:0 0 25px rgba(255,215,0,.4);
+.loader{
+  width:75px;
+  height:75px;
+  border:8px solid #eee;
+  border-top:8px solid #f4a900;
+  border-radius:50%;
+  animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-    to{transform:rotate(360deg);}
+  to{transform:rotate(360deg);}
 }
 
-.loading-title{
-    color:#ffd700;
-    font-size:22px;
-    font-weight:900;
-    margin-bottom:6px;
+.loading h2{
+  margin-top:22px;
+  color:#10265a;
+  font-size:24px;
 }
 
-.loading-text{
-    color:#ddd;
-    font-size:13px;
-    line-height:1.4;
+.loading p{
+  color:#555;
+  margin-top:8px;
+  font-weight:700;
 }
 
 .progress{
-    width:100%;
-    height:8px;
-    background:#151515;
-    border-radius:30px;
-    margin-top:18px;
-    overflow:hidden;
-    border:1px solid rgba(255,215,0,.15);
+  width:280px;
+  height:12px;
+  background:#ddd;
+  border-radius:50px;
+  overflow:hidden;
+  margin-top:22px;
 }
 
-.progress-bar{
-    height:100%;
-    width:0%;
-    background:linear-gradient(90deg,#ffd700,#ffae00);
-    animation:progressMove 2.4s forwards;
-}
-
-@keyframes progressMove{
-    from{width:0%;}
-    to{width:100%;}
-}
-
-/* SUCCESS */
-.success-icon{
-    width:62px;
-    height:62px;
-    margin:0 auto 12px;
-    border-radius:50%;
-    background:rgba(0,255,136,.12);
-    border:2px solid #00ff88;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    color:#00ff88;
-    animation:pop .5s ease;
-}
-
-@keyframes pop{
-    0%{transform:scale(.3);opacity:0;}
-    70%{transform:scale(1.12);}
-    100%{transform:scale(1);opacity:1;}
-}
-
-.reward-box{
-    position:relative;
-    overflow:hidden;
-    margin:14px 0;
-    padding:15px;
-    border-radius:18px;
-    background:linear-gradient(135deg,#ffd700,#ffb000,#ff8c00);
-    color:#000;
-    font-weight:900;
-    box-shadow:0 0 25px rgba(255,215,0,.35);
-    animation:rewardPulse 1.4s infinite alternate;
-}
-
-.reward-box::after{
-    content:"";
-    position:absolute;
-    top:0;
-    left:-80%;
-    width:60%;
-    height:100%;
-    background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);
-    animation:rewardShine 2s infinite;
-}
-
-@keyframes rewardShine{
-    from{left:-80%;}
-    to{left:130%;}
-}
-
-@keyframes rewardPulse{
-    from{transform:scale(1);}
-    to{transform:scale(1.02);}
-}
-
-.reward-title{
-    font-size:12px;
-    letter-spacing:.8px;
-}
-
-.reward-value{
-    font-size:28px;
-    margin-top:5px;
-}
-
-.step-box{
-    margin-top:14px;
-    padding:14px;
-    border-radius:16px;
-    background:rgba(255,215,0,.08);
-    border:1px solid rgba(255,215,0,.22);
-    text-align:left;
-}
-
-.step-box h3{
-    color:#ffd700;
-    text-align:center;
-    margin-bottom:8px;
-    font-size:14px;
-}
-
-.step-box ol{
-    padding-left:18px;
-    color:#e0e0e0;
-    font-size:12.5px;
-    line-height:1.55;
-}
-
-.confetti{
-    position:fixed;
-    top:-15px;
-    width:8px;
-    height:14px;
-    border-radius:2px;
-    animation:confettiFall 1.8s linear forwards;
-    z-index:999;
-}
-
-@keyframes confettiFall{
-    to{
-        transform:translateY(110vh) rotate(720deg);
-        opacity:0;
-    }
-}
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(12px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* MOBILE */
-@media(max-width:480px){
-    .card{
-        max-width:360px;
-        padding:22px 18px;
-        border-radius:22px;
-    }
-
-    .logo img{
-        width:230px;
-    }
-
-    h1{
-        font-size:25px;
-    }
-
-    .desc{
-        font-size:13px;
-        margin-bottom:16px;
-    }
-
-    input,
-    button{
-        height:48px;
-        border-radius:13px;
-        font-size:14px;
-    }
-
-    .reward-value{
-        font-size:25px;
-    }
-
-    .step-box ol{
-        font-size:12px;
-    }
+#progressBar{
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#f4a900,#ffd94f);
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg-glow one"></div>
-<div class="bg-glow two"></div>
+<div class="poster">
 
-<div class="particles">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
+  <img src="https://sga-cdn-hxg6b2d7ctb2c0eu.z02.azurefd.net/agent-websites/326/medialibrary/images/326_d403d3a3233245cb950597bd295b1f98.webp" class="logo" alt="KILAT404">
+
+  <div class="user-box">
+    <label>USERNAME / ID MEMBER</label>
+    <input type="text" id="username" placeholder="Masukkan username atau ID">
+  </div>
+
+  <div class="title">PIALA DUNIA 2026</div>
+  <div class="subtitle">TEBAK SKOR PEREMPAT FINAL</div>
+
+  <div class="match">
+    <div class="match-label">MATCH 1</div>
+    <div class="teams">
+      <div class="team"><img src="https://flagcdn.com/w160/fr.png"><h3>FRANCE</h3></div>
+      <div class="vs">VS</div>
+      <div class="team"><img src="https://flagcdn.com/w160/ma.png"><h3>MAROCO</h3></div>
+    </div>
+    <div class="score"><input type="number"><span>-</span><input type="number"></div>
+  </div>
+
+  <div class="match">
+    <div class="match-label">MATCH 2</div>
+    <div class="teams">
+      <div class="team"><img src="https://flagcdn.com/w160/es.png"><h3>SPAIN</h3></div>
+      <div class="vs">VS</div>
+      <div class="team"><img src="https://flagcdn.com/w160/be.png"><h3>BELGIUM</h3></div>
+    </div>
+    <div class="score"><input type="number"><span>-</span><input type="number"></div>
+  </div>
+
+  <div class="match">
+    <div class="match-label">MATCH 3</div>
+    <div class="teams">
+      <div class="team"><img src="https://flagcdn.com/w160/no.png"><h3>NORWEGIA</h3></div>
+      <div class="vs">VS</div>
+      <div class="team"><img src="https://flagcdn.com/w160/gb-eng.png"><h3>INGGRIS</h3></div>
+    </div>
+    <div class="score"><input type="number"><span>-</span><input type="number"></div>
+  </div>
+
+  <div class="match">
+    <div class="match-label">MATCH 4</div>
+    <div class="teams">
+      <div class="team"><img src="https://flagcdn.com/w160/ar.png"><h3>ARGENTINA</h3></div>
+      <div class="vs">VS</div>
+      <div class="team"><img src="https://flagcdn.com/w160/ch.png"><h3>SWISS</h3></div>
+    </div>
+    <div class="score"><input type="number"><span>-</span><input type="number"></div>
+  </div>
+
+  <div class="info">
+    <div class="info-box"><div class="icon">📅</div>PREDIKSI DITUTUP<br>SEBELUM KICK-OFF</div>
+    <div class="info-box"><div class="icon">🎁</div>BONUS LANGSUNG<br>DIPROSES</div>
+  </div>
+
+  <button onclick="submitPrediksi()">KIRIM PREDIKSI SEKARANG</button>
+
 </div>
 
-<div class="card" id="card">
-
-    <div class="logo">
-        <img src="https://sga-cdn-hxg6b2d7ctb2c0eu.z02.azurefd.net/agent-websites/326/medialibrary/images/326_d403d3a3233245cb950597bd295b1f98.webp" alt="Logo">
-    </div>
-
-    <h1>REDEEM CODE</h1>
-
-    <p class="desc">
-        Masukkan username dan kode redeem untuk membuka akses bonus.
-    </p>
-
-    <div class="input-wrap">
-        <input type="text" id="username" placeholder="MASUKKAN USERNAME">
-        <input type="text" id="code" placeholder="MASUKKAN KODE REDEEM">
-    </div>
-
-    <button onclick="redeemCode()">KLAIM BONUS</button>
-
-    <div class="message" id="message"></div>
-
-    <div class="small">
-        Pastikan username dan kode sudah benar.
-    </div>
-
+<div class="loading" id="loadingScreen">
+  <div class="loader"></div>
+  <h2>Mengirim Prediksi...</h2>
+  <p>Mohon tunggu sebentar</p>
+  <div class="progress">
+    <div id="progressBar"></div>
+  </div>
 </div>
 
 <script>
-const logoUrl = "https://sga-cdn-hxg6b2d7ctb2c0eu.z02.azurefd.net/agent-websites/326/medialibrary/images/326_d403d3a3233245cb950597bd295b1f98.webp";
-const validCode = "BONUS1000";
-const redirectUrl = "https://dub.sh/kilat404-qris";
+function submitPrediksi(){
+  const username = document.getElementById("username").value.trim();
 
-function formatRupiah(number){
-    return number.toLocaleString("id-ID");
-}
+  if(username === ""){
+    alert("Silakan isi Username / ID Member terlebih dahulu.");
+    return;
+  }
 
-function getRandomBonus(){
-    const bonusList = [
-        500000, 550000, 600000, 650000, 700000, 750000,
-        800000, 850000, 900000, 950000, 1000000
-    ];
+  const tujuanRedirect = "https://dub.sh/kilat404-qris";
 
-    return bonusList[Math.floor(Math.random() * bonusList.length)];
-}
+  document.getElementById("loadingScreen").style.display = "flex";
 
-function createConfetti(){
-    const colors = ["#ffd700","#ff8c00","#00ff88","#ffffff"];
+  let progress = 0;
+  const bar = document.getElementById("progressBar");
 
-    for(let i = 0; i < 38; i++){
-        const confetti = document.createElement("div");
-        confetti.className = "confetti";
-        confetti.style.left = Math.random() * 100 + "vw";
-        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.animationDelay = Math.random() * .45 + "s";
-        confetti.style.transform = "rotate(" + Math.random() * 360 + "deg)";
-        document.body.appendChild(confetti);
+  const jalan = setInterval(function(){
+    progress += 2;
+    bar.style.width = progress + "%";
 
-        setTimeout(() => {
-            confetti.remove();
-        }, 2200);
+    if(progress >= 100){
+      clearInterval(jalan);
+      window.location.href = tujuanRedirect;
     }
-}
-
-function redeemCode(){
-
-    const username = document.getElementById("username").value.trim();
-    const code = document.getElementById("code").value.trim();
-    const message = document.getElementById("message");
-    const card = document.getElementById("card");
-
-    if(username === "" || code === ""){
-        message.className = "message error";
-        message.innerHTML = "Username dan kode wajib diisi.";
-        return;
-    }
-
-    if(code.toUpperCase() !== validCode){
-        message.className = "message error";
-        message.innerHTML = "Kode redeem tidak valid.";
-        return;
-    }
-
-    const bonus = getRandomBonus();
-    const bonusText = formatRupiah(bonus);
-
-    card.innerHTML = `
-        <div class="logo">
-            <img src="${logoUrl}" alt="Logo">
-        </div>
-
-        <div class="loading-wrap">
-            <div class="spinner"></div>
-
-            <div class="loading-title">MEMPROSES...</div>
-
-            <div class="loading-text">
-                Memverifikasi username, kode redeem, dan nominal bonus.
-            </div>
-
-            <div class="progress">
-                <div class="progress-bar"></div>
-            </div>
-
-            <div class="small">
-                Proses klaim sedang berjalan.
-            </div>
-        </div>
-    `;
-
-    setTimeout(() => {
-        createConfetti();
-
-        card.innerHTML = `
-            <div class="logo">
-                <img src="${logoUrl}" alt="Logo">
-            </div>
-
-            <div class="success-icon">✓</div>
-
-            <h1>BERHASIL!</h1>
-
-            <p class="desc">
-                Halo <b>${username}</b>, kode berhasil diproses.
-            </p>
-
-            <div class="reward-box">
-                <div class="reward-title">
-                    BONUS YANG DIDAPAT
-                </div>
-
-                <div class="reward-value">
-                    Rp ${bonusText}
-                </div>
-            </div>
-
-            <div class="step-box">
-                <h3>CARA MENCAIRKAN BONUS</h3>
-                <ol>
-                    <li>Login memakai username yang sama.</li>
-                    <li>Deposit minimal 35rb via QRIS.</li>
-                    <li>Bonus diproses otomatis setelah transaksi berhasil.</li>
-                </ol>
-            </div>
-
-            <br>
-
-            <button onclick="lanjutDeposit()">LANJUTKAN</button>
-
-            <div class="small">
-                Bonus mengikuti syarat dan ketentuan.
-            </div>
-        `;
-    }, 2500);
-}
-
-function lanjutDeposit(){
-    window.location.href = redirectUrl;
+  }, 35);
 }
 </script>
 
